@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import net.ausiasmarch.contante.entity.UsuarioEntity;
 import net.ausiasmarch.contante.exception.ResourceNotFoundException;
+import net.ausiasmarch.contante.exception.UnvalidFieldException;
 import net.ausiasmarch.contante.repository.UsuarioRepository;
 
 @Service
@@ -17,11 +18,11 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository oUsuarioRepository;
 
-    private String[] arrNombres = {"Pepe", "Laura", "Ignacio", "Maria", "Lorenzo", "Carmen", "Rosa", "Paco", "Luis",
-        "Ana", "Rafa", "Manolo", "Lucia", "Marta", "Sara", "Rocio"};
+    private String[] arrNombres = { "Pepe", "Laura", "Ignacio", "Maria", "Lorenzo", "Carmen", "Rosa", "Paco", "Luis",
+            "Ana", "Rafa", "Manolo", "Lucia", "Marta", "Sara", "Rocio" };
 
-    private String[] arrApellidos = {"Sancho", "Gomez", "Pérez", "Rodriguez", "Garcia", "Fernandez", "Lopez",
-        "Martinez", "Sanchez", "Gonzalez", "Gimenez", "Feliu", "Gonzalez", "Hermoso", "Vidal", "Escriche"};
+    private String[] arrApellidos = { "Sancho", "Gomez", "Pérez", "Rodriguez", "Garcia", "Fernandez", "Lopez",
+            "Martinez", "Sanchez", "Gonzalez", "Gimenez", "Feliu", "Gonzalez", "Hermoso", "Vidal", "Escriche" };
 
     public int getRandomInt(int min, int max) {
         return (int) (Math.random() * (max - min + 1) + min);
@@ -71,7 +72,8 @@ public class UsuarioService {
     }
 
     public UsuarioEntity update(UsuarioEntity oUsuarioEntity) {
-        UsuarioEntity oUsuarioEntityFromDatabase = oUsuarioRepository.findById(oUsuarioEntity.getId()).get();
+        UsuarioEntity oUsuarioEntityFromDatabase = oUsuarioRepository.findById(oUsuarioEntity.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
         if (oUsuarioEntity.getNombre() != null) {
             oUsuarioEntityFromDatabase.setNombre(oUsuarioEntity.getNombre());
         }
@@ -84,7 +86,11 @@ public class UsuarioService {
         if (oUsuarioEntity.getEmail() != null) {
             oUsuarioEntityFromDatabase.setEmail(oUsuarioEntity.getEmail());
         }
-        return oUsuarioRepository.save(oUsuarioEntityFromDatabase);
+        try {
+            return oUsuarioRepository.save(oUsuarioEntityFromDatabase);
+        } catch (Exception e) {
+            throw new UnvalidFieldException("Campos no validos");
+        }
     }
 
     public Long deleteAll() {

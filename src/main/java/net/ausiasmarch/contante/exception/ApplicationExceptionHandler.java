@@ -23,7 +23,24 @@ public class ApplicationExceptionHandler {
         return new ResponseEntity<>(oErrorBean, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(value = UnvalidFieldException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<ErrorBean> unvalidFieldException(UnvalidFieldException exception) {
+        ErrorBean oErrorBean = new ErrorBean();
+        oErrorBean.setMessage(exception.getMessage());
+        oErrorBean.setStatus(HttpStatus.CONFLICT.value());
+        oErrorBean.setTimestamp(LocalDateTime.now());
+        return new ResponseEntity<>(oErrorBean, HttpStatus.CONFLICT);
+    }
 
-    
+    @ExceptionHandler(value = Exception.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ResponseEntity<ErrorBean> contanteException(Exception exception) {
+        ErrorBean oErrorBean = new ErrorBean();
+        oErrorBean.setMessage(exception.getMessage());
+        oErrorBean.setStatus(HttpStatus.UNAUTHORIZED.value());
+        oErrorBean.setTimestamp(LocalDateTime.now());
+        return new ResponseEntity<>(oErrorBean, HttpStatus.UNAUTHORIZED);
+    }
 
 }
