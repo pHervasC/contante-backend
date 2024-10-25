@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE `contante` (
   `id` bigint NOT NULL,
   `nombre` varchar(255) COLLATE utf32_unicode_ci NOT NULL,
   `apellido1` varchar(255) COLLATE utf32_unicode_ci NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `apellido1`, `apellido2`, `email`) VALUES
+INSERT INTO `contante` (`id`, `nombre`, `apellido1`, `apellido2`, `email`) VALUES
 (1, 'Pedro', 'Picapiedra', 'Roca', 'pedropica@ausiasmarch.net'),
 (2, 'Pablo', 'Marmol', 'Granito', 'pedropica@ausiasmarch.net'),
 (4, 'Indalecio', 'dfdfgdfgdfgdfg', 'Sancho', 'dfgdfdfgdfggdfg'),
@@ -154,7 +154,7 @@ INSERT INTO `usuario` (`id`, `nombre`, `apellido1`, `apellido2`, `email`) VALUES
 --
 -- Indices de la tabla `usuario`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `contante`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -164,6 +164,6 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `contante`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 COMMIT;
