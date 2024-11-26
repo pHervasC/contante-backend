@@ -27,7 +27,7 @@ public class CuentaEntity {
     public Long id_tipocuenta;
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
-    @JoinColumn(name = "id_tipocuenta")
+    @JoinColumn(name = "id_tipocuenta", insertable = false, updatable = false)
     private TipoCuentaEntity tipoCuenta;
 
     public CuentaEntity() {

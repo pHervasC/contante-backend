@@ -32,7 +32,7 @@ public class SubCuentaEntity {
     private LocalDateTime momentstamp;
 
     @OneToMany(mappedBy = "subcuenta",fetch = FetchType.LAZY)
-    private java.util.List<GrupoSubCuentaEntity> gruposubcuenta; ;
+    private java.util.List<GrupoSubCuentaEntity> gruposubcuenta;
 
     @OneToMany(mappedBy = "subcuenta",fetch = FetchType.LAZY)
     private java.util.List<ApunteEntity> apunte;

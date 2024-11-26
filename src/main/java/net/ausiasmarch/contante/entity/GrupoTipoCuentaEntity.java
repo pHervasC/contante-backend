@@ -35,11 +35,11 @@ public class GrupoTipoCuentaEntity {
     private Long id_balance;
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
-    @JoinColumn(name = "id_tipocuenta")
+    @JoinColumn(name = "id_tipocuenta", insertable = false, updatable = false)
     private TipoCuentaEntity tipoCuenta;
 
     @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
-    @JoinColumn(name = "id_balance")
+    @JoinColumn(name = "id_balance", insertable = false, updatable = false)
     private BalanceEntity balance;
   
     public GrupoTipoCuentaEntity() {

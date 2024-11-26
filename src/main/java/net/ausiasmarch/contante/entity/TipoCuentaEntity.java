@@ -31,10 +31,10 @@ public class TipoCuentaEntity {
     @Digits(integer = 1, fraction = 0)
     private Long real_o_nominal;
   
-    @OneToMany(mappedBy = "tipocuenta",fetch = FetchType.LAZY)
-    private java.util.List<CuentaEntity> cuentas;
+    @OneToMany(mappedBy = "tipoCuenta",fetch = FetchType.LAZY)
+    private java.util.List<CuentaEntity> cuenta;
 
-    @OneToMany(mappedBy = "tipocuenta",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tipoCuenta",fetch = FetchType.LAZY)
     private java.util.List<GrupoTipoCuentaEntity> grupotipocuentas;
 
     public TipoCuentaEntity() {
@@ -96,7 +96,7 @@ public class TipoCuentaEntity {
         this.real_o_nominal = realOnominal;
     }
     public int getCuentas() {
-        return cuentas.size();
+        return cuenta.size();
     }
 
     public int getGrupoTipoCuentas() {
